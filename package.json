@@ -18,6 +18,7 @@
   "homepage": "https://github.com/staniszmatt/Game_Test#readme",
   "dependencies": {
     "express": "^4.16.2",
-    "socket.io": "^2.0.4"
+    "socket.io": "^2.0.4",
+    "touch": "^3.1.0"
   }
 }
