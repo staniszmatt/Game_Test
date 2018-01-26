@@ -1,6 +1,20 @@
-<!DOCTYPE html>  
+<!doctype html>
 
-hello world
+    <head>
+    
+    </head>
 
-<script src="https://odn.socket.io-1.4.5.js"></script>  <!-- This requests a file -->
-<script>const socket = io();</script>
+    <body>
+        <h1>Hello World</h1>
+
+        <!--<script src="https://cdn.socket.io/socket-1.4.5.js"></script> -->
+        <script src="/jquery/dist/jquery.js"></script>
+        <script src="/socket.io/socket.io.js"></script> <!-- This requests a file -->
+        <script>
+            const socket = io();    //Initializes a connection between cleient and server
+            socket.emit('Output Test'); //Just an extra test to verify communication to server spits out. 
+        </script>
+
+    </body>
+
+</html>

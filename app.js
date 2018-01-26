@@ -2,17 +2,23 @@
 
 const express = require('express');     //TO use express for file communication 
 const app = express();                  // 
-const serv = require('http').Server(app);
+const server = require('http').createServer(app);   //Creating a server
+const fs = require('fs');
+const io = require('socket.io')(server);  //loads and initializes socket IO
 
-app.get('/', function(reg, res){res.sendFile(__dirname + '/client/index.html');});
+app.get('/', function(req, res){res.sendFile(__dirname + '/client/index.html');});
 app.use('/client', express.static(__dirname + '/client'));
 
-serv.listen(2000);
+server.listen(2000);
 console.log("Server Started.");
 
-const io = require('socket.io')(serv, {});  //loads and intitializes socket IO
-io.sockets.on('connection', function(socket)
+
+io.sockets.on('connection', function(socket)    //When there is a connection the function is called
 {
-    console.log('socket connection');
+    console.log('socket connection'); //Console log  displaying socket connection when page is loaded???
+    socket.on('Output Test', function()
+    {
+     console.log('Output Test');
+});
 });
 
