@@ -16,9 +16,10 @@ console.log("Server Started.");
 io.sockets.on('connection', function(socket)    //When there is a connection the function is called
 {
     console.log('socket connection'); //Console log  displaying socket connection when page is loaded???
-    socket.on('Output Test', function()
+    socket.on('Output Data Test', function(data) //function call for data, any data from client
     {
-     console.log('Output Test');
+     console.log('Output Data is ' + data.reason);
+     socket.emit('serverMsg', {msg:'Hello From Server',}); //Sending message from server to client
 });
 });
 
