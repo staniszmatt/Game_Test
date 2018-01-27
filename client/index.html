@@ -1,5 +1,7 @@
 <!doctype html>
 
+<canvas id="ctx" width="500" height="500" style="border:1px solid #000000;"></canvas><!--Review Canvus on how to setup I think Game Environment.-->
+
     <head>
     
     </head>
@@ -7,13 +9,22 @@
     <body>
         <h1>Hello World</h1>
 
-        <script src="/jquery/dist/jquery.js"></script>
+        <!--<script src="/jquery/dist/jquery.js"></script>-->
         <script src="/socket.io/socket.io.js"></script> <!-- This requests a file -->
         <script>
+
+            const ctx = document.getElementById("ctx").getContext("2d");//Pulling Drawing Context
+            ctx.font = '30px Arial';
+
             const socket = io();    //Initializes a connection between cleient and server
-            socket.emit('Output Data Test',{reason:'Some String Data'}); //Sending some string data to server 
-            socket.on('serverMsg', function(data){console.log(data.msg);}); //Recievign data from server from serverMsg
-            const outputDataButton = function(){socket.emit('Output Data Test', {reason:'coming from client botton!'})};//created function to use for a botton to send data to server
+            
+            // socket.emit('Output Data Test',{reason:'Some String Data'}); //Sending some string data to server 
+            //const outputDataButton = function(){socket.emit('Output Data Test', {reason:'coming from client botton!'})};//created function to use for a botton to send data to server
+            socket.on('X', function(data){
+                ctx.clearRect(0,0,500,500);
+                ctx.fillText('PositionData', data.x, data.y);
+            }); 
+          
         </script>
 
 <button onclick="outputDataButton()">Out Put Data</button> <!-- Botton to send data to server-->
